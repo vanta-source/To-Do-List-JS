@@ -1,0 +1,97 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #F9F5F4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.todo-container {
+  background-color: #F3EFEE;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  background-color: #F3EFEE;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #222222;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #414141;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.done {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.error{
+  color: orangered;
+}
+#todoInput.inputError{
+  border-color: orangered;
+}
+
+
+label{
+    display: flex;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 12px;
+
+}
