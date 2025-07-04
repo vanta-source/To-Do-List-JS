@@ -17,15 +17,15 @@ let existingError = document.querySelector(".error");
     error = true;
 
 
-  } else if (taskName == "") {
-    if (!hasShownError) {
+  } else if (taskName == "" && !hasShownError ) {
+    
       let emptyError = document.createElement("div");
       emptyError.classList.add("error");
       emptyError.innerText = "Please Write a Task";
       taskInput.classList.add("inputError");
       todoGroup.after(emptyError);
       hasShownError = true;
-    }
+    
   }
 
   if (taskName != "" && hasShownError && existingError) {
@@ -48,6 +48,12 @@ function renderTask(taskName) {
   taskList.type = "checkbox";
   taskList.classList.add("checkbox");
 
+  taskLabel.onclick = function checked ( ){
+  taskLabel.remove()
+  tasks = tasks.filter(taskLabel => taskLabel !== taskName);
+  saveTasks();
+
+}
   taskLabel.innerText = taskName;
   taskLabel.prepend(taskList);
 
