@@ -1,29 +1,20 @@
 let hasShownError = false;
+let tasks = [];
+let container = document.getElementById("todoList");
+let todoGroup = document.getElementById("input-group");
+let taskInput = document.getElementById("todoInput");
+
+
+
 
 function addTodo() {
-  let todoGroup = document.getElementById("input-group");
-  let taskName = document.getElementById("todoInput").value;
-  let taskInput = document.getElementById("todoInput");
-  let container = document.getElementById("todoList");
-  container.classList.add("container");
-  console.log(taskName);
 
-  let existingError = document.querySelector(".error");
+let taskName = document.getElementById("todoInput").value;
+let existingError = document.querySelector(".error");
 
   if (taskName != "") {
-    let taskLabel = document.createElement("label"); //Creates a label 
-    container.prepend(taskLabel); //Put task label inside container
-    let taskList = document.createElement("input");
-    
-    taskList.type = "checkbox"
-    taskList.classList.add("checkbox")
-
-    taskLabel.innerText = taskName; // Input insert in task label
-    taskLabel.prepend(taskList) //Puts input inside label in html
-    taskInput.value="" //Remove Previous Input value
-    //handel Error
+    createNewTask(taskName);
     error = true;
-
 
 
   } else if (taskName == "") {
@@ -44,6 +35,44 @@ function addTodo() {
     taskInput.classList.remove("inputError");
   }
   
+
+
 }
 
-function cleerInout() {}
+
+function createNewTask(taskName){
+    let taskLabel = document.createElement("label"); //Creates a label
+    taskLabel.classList.add("labeling") 
+    container.prepend(taskLabel); //Put task label inside container
+    let taskList = document.createElement("input");
+    
+    taskList.type = "checkbox"
+    taskList.classList.add("checkbox")
+
+    taskLabel.innerText = taskName; // Input insert in task label
+    tasks.push(taskName)
+
+    taskLabel.prepend(taskList) //Puts input inside label in html
+    taskInput.value="" //Remove Previous Input value
+    //handel Error
+    saveTasks();
+
+}
+
+
+
+function saveTasks() {
+  localStorage.setItem("todoList", JSON.stringify(tasks));
+}
+
+
+
+function loadTasks() {
+  let stored = JSON.parse(localStorage.getItem("todoList")) || [];
+  tasks = stored;
+  tasks.forEach(t => createNewTask(t));
+}
+
+
+
+window.addEventListener("DOMContentLoaded", loadTasks);
