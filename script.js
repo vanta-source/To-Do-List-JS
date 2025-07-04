@@ -40,39 +40,43 @@ let existingError = document.querySelector(".error");
 }
 
 
-function createNewTask(taskName){
-    let taskLabel = document.createElement("label"); //Creates a label
-    taskLabel.classList.add("labeling") 
-    container.prepend(taskLabel); //Put task label inside container
-    let taskList = document.createElement("input");
-    
-    taskList.type = "checkbox"
-    taskList.classList.add("checkbox")
+function renderTask(taskName) {
+  let taskLabel = document.createElement("label");
+  taskLabel.classList.add("labeling");
 
-    taskLabel.innerText = taskName; // Input insert in task label
-    tasks.push(taskName)
+  let taskList = document.createElement("input");
+  taskList.type = "checkbox";
+  taskList.classList.add("checkbox");
 
-    taskLabel.prepend(taskList) //Puts input inside label in html
-    taskInput.value="" //Remove Previous Input value
-    //handel Error
-    saveTasks();
+  taskLabel.innerText = taskName;
+  taskLabel.prepend(taskList);
 
+  container.prepend(taskLabel);
+  taskInput.value=""
+}
+
+
+function createNewTask(taskName) {
+  renderTask(taskName);
+  tasks.push(taskName);        
+  saveTasks();                 
 }
 
 
 
 function saveTasks() {
+  console.log("Tasks to save:", tasks);
   localStorage.setItem("todoList", JSON.stringify(tasks));
 }
 
 
 
 function loadTasks() {
-  let stored = JSON.parse(localStorage.getItem("todoList")) || [];
-  tasks = stored;
-  tasks.forEach(t => createNewTask(t));
+  const stored = JSON.parse(localStorage.getItem("todoList")) || [];
+  tasks = stored; 
+  stored.forEach(taskName => renderTask(taskName)); 
 }
-
+console.log("localStorage:", localStorage.getItem("todoList"));
 
 
 window.addEventListener("DOMContentLoaded", loadTasks);
